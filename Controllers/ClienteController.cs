@@ -36,5 +36,30 @@ namespace ProjetoMVC.Controllers
             }
             return View(cliente);
         }
+        public IActionResult Editar(int id)
+        {
+            var cliente = _context.Clientes.Find(id);
+            if (cliente == null) return RedirectToAction(nameof(Index));
+            return View(cliente);
+        }
+        [HttpPost]
+        public IActionResult Editar(Clientes cliente)
+        {
+            var clienteBanco = _context.Clientes.Find(cliente.id);
+            clienteBanco.Name = cliente.Name;
+            clienteBanco.Email = cliente.Email;
+            clienteBanco.Cellphone = cliente.Cellphone;
+            clienteBanco.Description = cliente.Description;
+            clienteBanco.Active = cliente.Active;
+            _context.Clientes.Update(clienteBanco);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Detalhes(int id)
+        {
+            var cliente = _context.Clientes.Find(id);
+            if (cliente == null) return RedirectToAction(nameof(Index));
+            return View(cliente);
+        }
     }
 }
