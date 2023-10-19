@@ -1,0 +1,65 @@
+@model IEnumerable<ProjetoMVC.Models.Clientes>
+
+@{
+    ViewData["Title"] = "Listagem de clientes";
+}
+
+<h2>Clientes</h2>
+<p>
+    <a asp-action="Criar">Novo Cliente</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cellphone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Cellphone)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Active)
+                </td>
+                <td>
+                    <a asp-action="Editar" asp-route-itemid="item.id">Editar</a> |
+                    <a asp-action="Detalhes" asp-route-itemid="item.id">Detalhes</a> |
+                    <a asp-action="Deletar" asp-route-itemid="item.id">Deletar</a> |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
