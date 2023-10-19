@@ -61,5 +61,21 @@ namespace ProjetoMVC.Controllers
             if (cliente == null) return RedirectToAction(nameof(Index));
             return View(cliente);
         }
+        public IActionResult Deletar(int id)
+        {
+            var cliente = _context.Clientes.Find(id);
+            if (cliente == null) return RedirectToAction(nameof(Index));
+            return View(cliente);
+        }
+
+        [HttpPost]
+        public IActionResult Deletar(Clientes cliente)
+        {
+            var clienteBanco = _context.Clientes.Find(cliente.id);
+            if (cliente == null) return RedirectToAction(nameof(Index));
+            _context.Clientes.Remove(clienteBanco);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
